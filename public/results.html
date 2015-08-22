@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html ng-app="SearchApp">
+<head>
+	<title>Localy - Open Source Hyper Local Search</title>
+	<link rel="stylesheet" type="text/css" href="stylesheets/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="stylesheets/style.css">
+	<script type="text/javascript" src="javascripts/angular.min.js"></script>
+	<script type="text/javascript" src="javascripts/controllers/searchcontroller.js"></script>
+	<script src="http://maps.google.com/maps/api/js?sensor=false" type="text/javascript"></script>
+</head>
+<body ng-controller="SearchController">
+<div class="container-fluid resultnav">	
+	<div class="row navbar">
+		<div class="col-md-1">
+			<div class="form-inline">
+				<img src="images/logo.png" alt="Localy Logo" class="pull-left"><label> Localy </label>
+			</div>
+		</div>
+		<div class="col-md-4">
+		 	<form class="form-inline searchform"  action="search" method="GET" role="search">
+			    <input type="text" class="form-control fullwidth searchbox" name="q" placeholder="Search">	  
+		    </form>
+		</div>
+	</div>
+</div>
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-1">
+
+		</div>
+		<div class="col-md-4">
+			<ul  class="list-group">
+				<li ng-repeat="res in results" class="list-group-item">
+					
+					<div class="row">
+						<div class="col-md-2">
+							<p>
+								<img src="{{res._source.thumbnail}}" class="img-thumbnail">
+							</p>
+						</div>
+						<div class="col-md-8">
+							<h4 class="resheader">
+								<a ng-if="res._type=='restaurant'" href="restaurant/{{res._id}}">{{res._source.name}}</a>
+							</h4>
+							<p>
+								{{res._source.address.streetAddress}}<br>
+								{{res._source.address.addressLocality}}<br>
+								{{res._source.address.postalCodes}}
+							</p>
+						</div>
+					</div>
+				</li>
+			</ul>
+		</div>
+		<div class="col-md-4">
+			<div id="map_wrapper">
+			    <div id="map_canvas" class="mapping"></div>
+			</div>
+		</div>
+	</div>
+	
+</div>
+<footer>
+	<a href="#">Submit Your Business</a><br>
+	Fork at <a href="https://github.com/localy">Localy</a>
+</footer>
+</script>
+</body>
+</html>

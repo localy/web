@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html ng-app="SearchApp">
+<head>
+	<title>Localy - Open Source Hyper Local Search</title>
+	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="/stylesheets/style.css">
+	<script type="text/javascript" src="/javascripts/angular.min.js"></script>
+	<script type="text/javascript" src="/javascripts/controllers/restaurantcontroller.js"></script>
+	<script src="http://maps.google.com/maps/api/js?sensor=false" type="text/javascript"></script>
+</head>
+<body ng-controller="RestaurantController">
+<div class="container-fluid resultnav">	
+	<div class="row navbar">
+		<div class="col-md-1">
+			<div class="form-inline">
+				<img src="/images/logo.png" alt="Localy Logo" class="pull-left"><label> Localy </label>
+			</div>
+		</div>
+		<div class="col-md-4">
+		 	<form class="form-inline searchform"  action="search" method="GET" role="search">
+			    <input type="text" class="form-control fullwidth searchbox" name="q" placeholder="Search">	  
+		    </form>
+		</div>
+	</div>
+</div>
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-1">
+
+		</div>
+		<div class="col-md-9">
+			<h1 class="heading">{{res._source.name}}</h1>
+			<span class="glyphicon glyphicon-star"></span>
+			<span class="glyphicon glyphicon-star"></span>
+			<span class="glyphicon glyphicon-star"></span>
+			<span class="glyphicon glyphicon-star"></span>
+			4.7 Based on 24 Votes
+			
+		</div>
+	</div>
+</div>
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-1">
+
+		</div>
+		<div class="col-md-9">
+			<div id="map_wrapper">
+			    <div id="map_canvas" class="mapping"></div>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-1">
+
+		</div>
+		<div class="col-md-5">
+			<h2 class="subheading">Address</h2>
+			<p>
+				{{res._source.address.streetAddress}}<br>
+				{{res._source.address.addressLocality}}<br>
+				{{res._source.address.postalCodes}}
+			</p>
+			<h2 class="subheading">Products</h2>
+			<ul class="list">
+				<li class="list-item" ng-repeat="m in res._source.products track by $index">{{m}}</li>
+			</ul>
+		</div>
+		<div class="col-md-4" id="container">
+			<div class="box"><img src="http://media-cdn.tripadvisor.com/media/photo-s/01/9a/e8/66/asian-kitchen-resturant.jpg"></div>
+			<div class="box"><img src="http://media-cdn.tripadvisor.com/media/photo-s/01/9a/e8/67/wrapped-resturant.jpg"></div>
+			<div class="box"><img src="http://www.fabulousfingerfood.com.au/news/wp-content/uploads/2014/11/Resturant.jpg"></div>
+			<div class="box"><img src="http://media-cdn.tripadvisor.com/media/photo-s/01/9a/e8/67/wrapped-resturant.jpg"></div>
+		</div>
+	</div>	
+</div>
+<footer>
+	<a href="#">Submit Your Business</a><br>
+	Fork at <a href="https://github.com/localy">Localy</a>
+</footer>
+</script>
+</body>
+</html>
