@@ -1,0 +1,15 @@
+name: Manual Runner Verification
+
+on:
+  workflow_dispatch: # Enables manual triggering
+
+jobs:
+  verify:
+    runs-on: [self-hosted]
+    
+    steps:
+      - name: Basic Verification
+        run: |
+          echo "Manual runner verification started!"
+          echo "Runner is working!"
+          uname -a
